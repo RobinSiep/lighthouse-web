@@ -1,0 +1,18 @@
+{
+  "name": "lighthouse-web",
+  "version": "0.1",
+  "main": "src/index.js",
+  "author": "Robin Siep",
+  "private": true,
+  "scripts": {
+    "start": "parcel index.html --port 7101",
+    "start:prod": "caddy",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "parcel": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  }
+}

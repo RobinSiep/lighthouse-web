@@ -1,0 +1,15 @@
+version: '3'
+services:
+  lighthouse-web:
+    container_name: lighthouse-web
+    image: lighthouse-web:dev
+    build:
+      context: .
+    ports:
+      - "7101:7101"
+    volumes:
+      - .:/lighthouse-web
+      - /lighthouse-web/node_modules/ # Makes sure local node_modules doesn't get mounted
+    tty: true
+    stdin_open: true
+    command: yarn start
