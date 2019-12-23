@@ -2,7 +2,7 @@ import React from 'react';
 import openSocket from 'socket.io-client';
 import MachineListItem from '../components/MachineListItem';
 
-const  socket = openSocket('http://localhost:8080');
+const  socket = openSocket('http://localhost:7102');
 
 export default class Machines extends React.PureComponent {
   constructor(props) {
