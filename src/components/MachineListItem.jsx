@@ -6,14 +6,13 @@ const propTypes = {
   machine: PropTypes.object.isRequired
 };
 
-const ListItem = styled.div`
-
-`;
+const ListItem = styled.div``;
 
 function MachineListItem(props) {
   return (
     <ListItem>
       <h4>{props.machine.name}</h4>
+      <p>{("sys_info" in props.machine) ? 'Online' : 'Offline'}</p>
     </ListItem>
   );
 }
