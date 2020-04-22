@@ -12,6 +12,8 @@ const ListItem = styled.div`
   padding: 16px;
   width: 100%;
   border: 1px solid #F1F1F1;
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px rgba(0,0,0,.03);
 
   > * {
     margin: 0px 8px 0px 0px;
@@ -35,11 +37,17 @@ const UsageSummary = styled.p`
 
 class  MachineListItem extends React.PureComponent {
   getUsageSummary() {
-    return <UsageSummary><b>CPU</b> {this.getCPULoadAverage()}%</UsageSummary>;
+    return <UsageSummary>CPU {this.getCPULoadAverage()}% / RAM {this.getRAMUsagePercentage()}%</UsageSummary>;
   }
 
   getCPULoadAverage() {
     return this.props.machine.sys_info.load_average[0].toFixed(2);
+  }
+
+  getRAMUsagePercentage() {
+    return (
+      this.props.machine.sys_info.memory_used / this.props.machine.sys_info.memory * 100
+    ).toFixed(2);
   }
 
   render() {
@@ -54,6 +62,7 @@ class  MachineListItem extends React.PureComponent {
       color = '#FF0000';
       usageSummary = null;
     }
+    console.log(this.props.machine);
 
     return (
       <ListItem className={this.props.className}>
