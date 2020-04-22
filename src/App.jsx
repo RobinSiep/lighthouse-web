@@ -4,9 +4,10 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Machines from './pages/Machines';
 
 const theme = {
-  primaryColor: "#0065FF",
+  primaryColor: "#1272FF",
   translucentGrey: "#F1F1F1",
-  grey: "#676767"
+  grey: "#676767",
+  lightGrey: "#C5C4C4"
 };
 
 const GlobalStyle = createGlobalStyle`

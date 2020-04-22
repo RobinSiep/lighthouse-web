@@ -28,7 +28,7 @@ const Indicator = styled.span`
 `;
 
 const Name = styled.h4`
-  color: ${props => props.theme.primaryColor};
+  color: ${props => props.online ? props.theme.primaryColor : props.theme.lightGrey};
 `;
 
 const UsageSummary = styled.p`
@@ -67,7 +67,7 @@ class  MachineListItem extends React.PureComponent {
     return (
       <ListItem className={this.props.className}>
         <Indicator color={color} />
-        <Name>{this.props.machine.name}</Name>
+        <Name online={online}>{this.props.machine.name}</Name>
         {usageSummary}
       </ListItem>
     );
