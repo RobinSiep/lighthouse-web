@@ -8,11 +8,22 @@ const theme = {
 };
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
   html, body {
     margin: 0px;
     padding: 0px;
     height: 100%;
     width: 100%;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #676767;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'B612', sans-serif;
   }
 `;
 
