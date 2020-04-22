@@ -11,7 +11,7 @@ const ListItem = styled.div`
   align-items: center;
   padding: 16px;
   width: 100%;
-  border: 1px solid #F1F1F1;
+  border: 1px solid ${props => props.theme.translucentGrey};
   border-radius: 3px;
   box-shadow: 1px 2px 4px rgba(0,0,0,.03);
 
@@ -28,7 +28,7 @@ const Indicator = styled.span`
 `;
 
 const Name = styled.h4`
-  color: #2F97C1;
+  color: ${props => props.theme.primaryColor};
 `;
 
 const UsageSummary = styled.p`

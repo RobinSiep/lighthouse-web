@@ -4,7 +4,9 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Machines from './pages/Machines';
 
 const theme = {
-  primaryColor: "#23242c"
+  primaryColor: "#0065FF",
+  translucentGrey: "#F1F1F1",
+  grey: "#676767"
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -19,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
-    color: #676767;
+    color: ${theme.grey};
   }
 
   h1, h2, h3, h4, h5, h6 {
