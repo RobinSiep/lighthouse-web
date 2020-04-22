@@ -6,15 +6,72 @@ const propTypes = {
   machine: PropTypes.object.isRequired
 };
 
-const ListItem = styled.div``;
+const ListItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
+  border: 1px solid ${props => props.theme.translucentGrey};
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px rgba(0,0,0,.03);
 
-function MachineListItem(props) {
-  return (
-    <ListItem>
-      <h4>{props.machine.name}</h4>
-      <p>{("sys_info" in props.machine) ? 'Online' : 'Offline'}</p>
-    </ListItem>
-  );
+  > * {
+    margin: 0px 8px 0px 0px;
+  }
+`;
+
+const Indicator = styled.span`
+  height: 10px;
+  width: 10px;
+  background-color: ${props => props.color};
+  border-radius: 50%;
+`;
+
+const Name = styled.h4`
+  color: ${props => props.online ? props.theme.primaryColor : props.theme.lightGrey};
+`;
+
+const UsageSummary = styled.p`
+  margin-left: 16px;
+`;
+
+class  MachineListItem extends React.PureComponent {
+  getUsageSummary() {
+    return <UsageSummary>CPU {this.getCPULoadAverage()}% / RAM {this.getRAMUsagePercentage()}%</UsageSummary>;
+  }
+
+  getCPULoadAverage() {
+    return this.props.machine.sys_info.load_average[0].toFixed(2);
+  }
+
+  getRAMUsagePercentage() {
+    return (
+      this.props.machine.sys_info.memory_used / this.props.machine.sys_info.memory * 100
+    ).toFixed(2);
+  }
+
+  render() {
+    let online = "sys_info" in this.props.machine;
+    let color
+    let usageSummary
+
+    if (online) {
+      color = '#15CD72';
+      usageSummary = this.getUsageSummary();
+    } else {
+      color = '#FF0000';
+      usageSummary = null;
+    }
+    console.log(this.props.machine);
+
+    return (
+      <ListItem className={this.props.className}>
+        <Indicator color={color} />
+        <Name online={online}>{this.props.machine.name}</Name>
+        {usageSummary}
+      </ListItem>
+    );
+  }
 }
 
 MachineListItem.propTypes = propTypes;
