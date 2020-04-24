@@ -80,6 +80,7 @@ class Login extends React.Component {
       password: this.state.password
     };
 
+    console.log( process.env.LIGHTHOUSE_URL.concat("auth/login"))
     axios.post(
       process.env.LIGHTHOUSE_URL.concat("auth/login"),
       credentials,
@@ -122,4 +123,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(({ auth }) => ({ authenticated: auth.authenticated }))(Login);

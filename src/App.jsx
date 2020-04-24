@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Machines from './pages/Machines';
 
@@ -45,7 +47,7 @@ export default function App() {
             <Switch>
               <Route exact
                 path="/"
-                component={Login} />
+                component={Machines} />
             </Switch>
             <GlobalStyle />
           </Content>
