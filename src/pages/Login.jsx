@@ -80,7 +80,6 @@ class Login extends React.Component {
       password: this.state.password
     };
 
-    console.log( process.env.LIGHTHOUSE_URL.concat("auth/login"))
     axios.post(
       process.env.LIGHTHOUSE_URL.concat("auth/login"),
       credentials,
@@ -101,7 +100,7 @@ class Login extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.authenticated) {
-        window.location.pathname = "/";
+      window.location.pathname = "/";
     }
   }
 

@@ -6,13 +6,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Machines from './pages/Machines';
 
-const theme = {
-  primaryColor: "#1272FF",
-  translucentGrey: "#F1F1F1",
-  grey: "#676767",
-  lightGrey: "#C5C4C4"
-};
-
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Roboto:wght@300;400&display=swap');
 
@@ -25,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
-    color: ${theme.grey};
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -38,16 +30,14 @@ const Content = styled.div`
   width: 100%;
 `;
 
-export default function App() {
+function App(props) {
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={props.theme}>
         <BrowserRouter>
           <Content>
             <Switch>
-              <Route exact
-                path="/"
-                component={Machines} />
+              <ProtectedRoute exact path='/' component={Machines} fallbackComponent={Login} />
             </Switch>
             <GlobalStyle />
           </Content>
@@ -56,3 +46,7 @@ export default function App() {
     </div>
   );
 }
+
+export default connect(
+  ({ auth, theme }) => ({ authenticated: auth.authenticated, theme: theme.theme })
+)(App);
