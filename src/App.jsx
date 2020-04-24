@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ProtectedRoute from './components/ProtectedRoute';
+import Logout from './components/Logout';
 import Login from './pages/Login';
 import Machines from './pages/Machines';
 
@@ -30,12 +31,18 @@ const Content = styled.div`
   width: 100%;
 `;
 
+const StyledLogout = styled(Logout)`
+  float: right;
+  margin: 16px;
+`;
+
 function App(props) {
   return (
     <div>
       <ThemeProvider theme={props.theme}>
         <BrowserRouter>
           <Content>
+            <StyledLogout>Log out</StyledLogout>
             <Switch>
               <ProtectedRoute exact path='/' component={Machines} fallbackComponent={Login} />
             </Switch>

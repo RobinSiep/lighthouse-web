@@ -35,7 +35,7 @@ const UsageSummary = styled.p`
   margin-left: 16px;
 `;
 
-class  MachineListItem extends React.PureComponent {
+class MachineListItem extends React.PureComponent {
   getUsageSummary() {
     return <UsageSummary>CPU {this.getCPULoadAverage()}% / RAM {this.getRAMUsagePercentage()}%</UsageSummary>;
   }
