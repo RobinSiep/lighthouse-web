@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import openSocket from 'socket.io-client';
 import MachineListItem from '../components/MachineListItem';
 
-const socket = openSocket('http://localhost:7102');
+const socket = openSocket(process.env.LIGHTHOUSE_URL);
 
 const Container = styled.div`
   display: flex;

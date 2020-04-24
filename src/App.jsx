@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Login from './pages/Login';
 import Machines from './pages/Machines';
 
 const theme = {
@@ -44,7 +45,7 @@ export default function App() {
             <Switch>
               <Route exact
                 path="/"
-                component={Machines} />
+                component={Login} />
             </Switch>
             <GlobalStyle />
           </Content>
