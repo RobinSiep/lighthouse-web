@@ -29,11 +29,15 @@ const GlobalStyle = createGlobalStyle`
 const Content = styled.div`
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-rows: [nav] 50px 1fr;
+  grid-row-gap: 8px;
 `;
 
 const StyledLogout = styled(Logout)`
-  float: right;
   margin: 16px;
+  grid-row: nav;
+  justify-self: end;
 `;
 
 function App(props) {
@@ -42,7 +46,7 @@ function App(props) {
       <ThemeProvider theme={props.theme}>
         <BrowserRouter>
           <Content>
-            <StyledLogout>Log out</StyledLogout>
+            { props.authenticated && <StyledLogout>Log out</StyledLogout> }
             <Switch>
               <ProtectedRoute exact path='/' component={Machines} fallbackComponent={Login} />
             </Switch>
