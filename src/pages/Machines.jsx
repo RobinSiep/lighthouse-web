@@ -27,7 +27,6 @@ export default class Machines extends React.PureComponent {
   }
 
   render() {
-    console.log('called');
     return (
       <Container>
         {Object.keys(this.state.machines).map((sid, index) => (
