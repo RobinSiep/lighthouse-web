@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import openSocket from 'socket.io-client';
 import MachineListItem from '../components/MachineListItem';
 
-const socket = openSocket(process.env.LIGHTHOUSE_URL);
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -24,10 +22,12 @@ export default class Machines extends React.PureComponent {
   }
 
   componentDidMount() {
+    let socket = openSocket(process.env.LIGHTHOUSE_URL);
     socket.on('machines', machines => this.setState({ machines: machines }));
   }
 
   render() {
+    console.log('called');
     return (
       <Container>
         {Object.keys(this.state.machines).map((sid, index) => (
