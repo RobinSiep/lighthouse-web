@@ -11,6 +11,7 @@ const ListItem = styled.div`
   align-items: center;
   padding: 16px;
   width: 100%;
+  height: 25px;
   border: 1px solid ${props => props.theme.translucentGrey};
   border-radius: 3px;
   box-shadow: 1px 2px 4px rgba(0,0,0,.03);
@@ -35,7 +36,7 @@ const UsageSummary = styled.p`
   margin-left: 16px;
 `;
 
-class  MachineListItem extends React.PureComponent {
+class MachineListItem extends React.PureComponent {
   getUsageSummary() {
     return <UsageSummary>CPU {this.getCPULoadAverage()}% / RAM {this.getRAMUsagePercentage()}%</UsageSummary>;
   }
