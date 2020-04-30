@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -24,19 +25,29 @@ const ListItem = styled.div`
 const Indicator = styled.span`
   height: 10px;
   width: 10px;
-  background-color: ${props => props.color};
+  background-color: ${props => props.running ? props.theme.green : props.theme.red};
   border-radius: 50%;
 `;
 
 const Name = styled.h4`
-  color: ${props => props.online ? props.theme.primaryColor : props.theme.lightGrey};
+  color: ${props => props.running ? props.theme.primaryColor : props.theme.lightGrey};
 `;
 
 const UsageSummary = styled.p`
   margin-left: 16px;
 `;
 
+const Icon = styled.i`
+  margin-left: auto;
+  color: ${props => props.running ? props.theme.translucentGrey : props.theme.green};
+`;
+
 class MachineListItem extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.wake = this.wake.bind(this);
+  }
+
   getUsageSummary() {
     return <UsageSummary>CPU {this.getCPULoadAverage()}% / RAM {this.getRAMUsagePercentage()}%</UsageSummary>;
   }
@@ -51,25 +62,30 @@ class MachineListItem extends React.PureComponent {
     ).toFixed(2);
   }
 
-  render() {
-    let online = "sys_info" in this.props.machine;
-    let color
-    let usageSummary
+  wake() {
+    axios.post(
+      process.env.LIGHTHOUSE_URL + "machines/" + this.props.machine.id + "/wake",
+      null,
+      { withCredentials: true }
+    )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
-    if (online) {
-      color = '#15CD72';
-      usageSummary = this.getUsageSummary();
-    } else {
-      color = '#FF0000';
-      usageSummary = null;
-    }
-    console.log(this.props.machine);
+  render() {
+    let running = "sys_info" in this.props.machine;
+    let usageSummary = running ? this.getUsageSummary() : null;
 
     return (
       <ListItem className={this.props.className}>
-        <Indicator color={color} />
-        <Name online={online}>{this.props.machine.name}</Name>
+        <Indicator running={running} />
+        <Name running={running}>{this.props.machine.name}</Name>
         {usageSummary}
+        <Icon running={running} className="fas fa-play" onClick={this.wake} />
       </ListItem>
     );
   }
