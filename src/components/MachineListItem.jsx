@@ -25,7 +25,7 @@ const ListItem = styled.div`
 const Indicator = styled.span`
   height: 10px;
   width: 10px;
-background-color: ${props => props.running ? props.theme.green : props.theme.red};
+  background-color: ${props => props.running ? props.theme.green : props.theme.red};
   border-radius: 50%;
 `;
 
