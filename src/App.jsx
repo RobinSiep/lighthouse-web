@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Logout from './components/Logout';
 import Login from './pages/Login';
 import Machines from './pages/Machines';
+import { lightTheme } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Roboto:wght@300;400&display=swap');
@@ -19,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
+    color: ${lightTheme.grey};
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -43,7 +45,7 @@ const StyledLogout = styled(Logout)`
 function App(props) {
   return (
     <div>
-      <ThemeProvider theme={props.theme}>
+      <ThemeProvider theme={lightTheme}>
         <BrowserRouter>
           <Content>
             { props.authenticated && <StyledLogout>Log out</StyledLogout> }
@@ -59,5 +61,5 @@ function App(props) {
 }
 
 export default connect(
-  ({ auth, theme }) => ({ authenticated: auth.authenticated, theme: theme.theme })
+  ({ auth }) => ({ authenticated: auth.authenticated })
 )(App);

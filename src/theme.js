@@ -1,7 +1,8 @@
 export const lightTheme = {
   name: "light",
-  errorColor: "#F66B6B",
-  primaryColor: "#1272FF",
+  red: "#F66B6B",
+  green: "#03C6AA",
+  primaryColor: "#4b7ed6",
   translucentGrey: "#F1F1F1",
   grey: "#676767",
   lightGrey: "#C5C4C4"

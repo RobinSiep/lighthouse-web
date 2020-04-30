@@ -5,12 +5,14 @@ import MachineListItem from '../components/MachineListItem';
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
   padding: 50px;
+  flex-direction: column;
 `;
 
 const StyledMachineListItem = styled(MachineListItem)`
   max-width: 1000px;
+  margin-top: 8px;
 `;
 
 export default class Machines extends React.PureComponent {
