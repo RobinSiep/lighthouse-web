@@ -1,0 +1,8 @@
+version: '3'
+services:
+  lighthouse-web:
+    container_name: lighthouse-web
+    image: mellow/lighthouse-web:latest
+    ports:
+      - "7101:7101"
+    command: yarn start
