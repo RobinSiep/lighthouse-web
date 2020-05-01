@@ -31,4 +31,5 @@ COPY . .
 
 RUN yarn run build
 
-CMD ["yarn", "run", "start:prod"]
+ENTRYPOINT ["yarn"]
+CMD ["run", "start:prod"]

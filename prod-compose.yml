@@ -5,4 +5,4 @@ services:
     image: mellow/lighthouse-web:latest
     ports:
       - "7101:7101"
-    command: yarn start
+    command: start
