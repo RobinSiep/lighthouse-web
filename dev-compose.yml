@@ -12,4 +12,4 @@ services:
       - /lighthouse-web/node_modules/ # Makes sure local node_modules doesn't get mounted
     tty: true
     stdin_open: true
-    command: yarn start
+    command: start

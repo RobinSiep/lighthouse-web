@@ -25,10 +25,12 @@ WORKDIR /lighthouse-web
 # Install package dependencies
 COPY package.json package.json
 RUN yarn install
+RUN yarn global add cross-env
 
 # Copy project files into image
 COPY . .
 
 RUN yarn run build
 
-CMD ["yarn", "run", "start:prod"]
+ENTRYPOINT ["yarn"]
+CMD ["run", "start:prod"]
