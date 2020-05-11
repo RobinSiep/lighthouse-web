@@ -1,6 +1,6 @@
 {
   "name": "lighthouse-web",
-  "version": "0.1",
+  "version": "0.2",
   "main": "src/index.js",
   "author": "Robin Siep",
   "private": true,
