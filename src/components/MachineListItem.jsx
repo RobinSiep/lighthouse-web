@@ -37,15 +37,20 @@ const UsageSummary = styled.p`
   margin-left: 16px;
 `;
 
-const Icon = styled.i`
-  margin-left: auto;
+const PlayIcon = styled.i`
   color: ${props => props.running ? props.theme.translucentGrey : props.theme.green};
 `;
+
+const StopIcon = styled.i`
+  margin-left: auto;
+  margin-right: 16px;
+  color: ${props => props.running ? props.theme.red : props.theme.translucentGrey};
+`
 
 class MachineListItem extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.wake = this.wake.bind(this);
+    this.exectuteCommand = this.executeCommand.bind(this);
   }
 
   getUsageSummary() {
@@ -62,18 +67,19 @@ class MachineListItem extends React.PureComponent {
     ).toFixed(2);
   }
 
-  wake() {
+  executeCommand(command) {
     axios.post(
-      process.env.LIGHTHOUSE_URL + "machines/" + this.props.machine.id + "/wake",
+      process.env.LIGHTHOUSE_URL + "machines/" + this.props.machine.id + "/" + command,
       null,
       { withCredentials: true }
     )
-      .then(res => {
+  .then(res => {
         console.log(res);
       })
       .catch(error => {
         console.log(error);
       });
+
   }
 
   render() {
@@ -85,7 +91,8 @@ class MachineListItem extends React.PureComponent {
         <Indicator running={running} />
         <Name running={running}>{this.props.machine.name}</Name>
         {usageSummary}
-        <Icon running={running} className="fas fa-play" onClick={this.wake} />
+        <StopIcon running={running} className="fas fa-stop" onClick={() => this.executeCommand('shutdown')} />
+        <PlayIcon running={running} className="fas fa-play" onClick={() => this.executeCommand('wake')} />
       </ListItem>
     );
   }
