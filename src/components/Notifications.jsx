@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Notification from './Notification';
 
@@ -9,10 +10,14 @@ const Container = styled.div`
 `;
 
 
-export default function Notifications(props) {
+function Notifications(props) {
   return (
     <Container>
+    {props.notifications.map((notification) => (
       <Notification />
+    ))}
     </Container>
   );
 }
+
+export default connect(({ notifications }) => ({ notifications }))(Notifications);
