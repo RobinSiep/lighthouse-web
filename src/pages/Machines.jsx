@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import openSocket from 'socket.io-client';
 import MachineListItem from '../components/MachineListItem';
+import observe from '../lib/responseObserver';
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +17,7 @@ const StyledMachineListItem = styled(MachineListItem)`
   margin-top: 8px;
 `;
 
-export default class Machines extends React.PureComponent {
+class Machines extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +28,7 @@ export default class Machines extends React.PureComponent {
   componentDidMount() {
     let socket = openSocket(process.env.LIGHTHOUSE_URL);
     socket.on('machines', machines => this.setState({ machines: machines }));
+    observe(socket, this.props);
   }
 
   render() {
@@ -38,3 +41,5 @@ export default class Machines extends React.PureComponent {
     ); 
   }
 }
+
+export default connect()(Machines)

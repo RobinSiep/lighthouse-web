@@ -11,6 +11,7 @@ const Container = styled.div`
 
 
 function Notifications(props) {
+  console.log(props.notifications)
   return (
     <Container>
     {props.notifications.map((notification) => (
