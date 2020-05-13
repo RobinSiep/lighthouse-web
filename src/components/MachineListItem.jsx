@@ -37,11 +37,17 @@ const UsageSummary = styled.p`
   margin-left: 16px;
 `;
 
-const PlayIcon = styled.i`
+const Icon = styled.i`
+  &:active{
+    text-shadow: 2px 2px rgba(0,0,0,0.1);
+  }
+`;
+
+const PlayIcon = styled(Icon)`
   color: ${props => props.running ? props.theme.translucentGrey : props.theme.green};
 `;
 
-const StopIcon = styled.i`
+const StopIcon = styled(Icon)`
   margin-left: auto;
   margin-right: 16px;
   color: ${props => props.running ? props.theme.red : props.theme.translucentGrey};
