@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ProtectedRoute from './components/ProtectedRoute';
 import Logout from './components/Logout';
+import Notifications from './components/Notifications';
 import Login from './pages/Login';
 import Machines from './pages/Machines';
 import { lightTheme } from './theme';
@@ -52,6 +53,7 @@ function App(props) {
             <Switch>
               <ProtectedRoute exact path='/' component={Machines} fallbackComponent={Login} />
             </Switch>
+            <Notifications />
             <GlobalStyle />
           </Content>
         </BrowserRouter>
