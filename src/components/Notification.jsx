@@ -7,11 +7,13 @@ import { dismiss } from '../actions/notification';
 const propTypes = {
   message: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  severity: PropTypes.string
+  severity: PropTypes.string,
+  timeToLiveInSeconds: PropTypes.number
 }
 
 const defaultProps = {
-  severity: 'info'
+  severity: 'info',
+  timeToLiveInSeconds: null
 }
 
 const Container = styled.div`
@@ -42,6 +44,19 @@ class Notification extends React.PureComponent {
     super(props);
     this.getColor = this.getColor.bind(this);
     this.dismissSelf = this.dismissSelf.bind(this);
+    this.scheduleDismiss = this.scheduleDismiss.bind(this);
+    if (props.timeToLiveInSeconds != null) {
+      this.scheduleDismiss(props.timeToLiveInSeconds);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.timeToLiveInSeconds == this.props.timeToLiveInSeconds ||
+        this.props.timeToLiveInSeconds == null) {
+      return;
+    }
+
+    this.scheduleDismiss(this.props.timeToLiveInSeconds);
   }
 
   getColor(severity) {
@@ -54,8 +69,11 @@ class Notification extends React.PureComponent {
   }
 
   dismissSelf() {
-    console.log('dismis');
     this.props.dispatch(dismiss(this.props.id));
+  }
+
+  scheduleDismiss(timeToLiveInSeconds) {
+    setTimeout(this.dismissSelf, timeToLiveInSeconds * 1000);
   }
 
   render() {
