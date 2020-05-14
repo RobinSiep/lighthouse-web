@@ -21,11 +21,11 @@ const StyledNotification = styled(Notification)`
 
 
 function Notifications(props) {
-  console.log(props.notifications)
+  console.log(props.notifications);
   return (
     <Container>
-    {props.notifications.map((notification) => (
-      <StyledNotification {...notification} />
+    {props.notifications.keySeq().map((id, index) => (
+      <StyledNotification key={id} id={id} {...props.notifications.get(id)} />
     ))}
     </Container>
   );
