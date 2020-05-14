@@ -61,10 +61,12 @@ class Notification extends React.PureComponent {
 
   getColor(severity) {
     switch(severity) {
+      case 'warning':
+        return this.props.theme.orange;
       case 'error':
-        return this.props.theme.red
+        return this.props.theme.red;
       default:
-        return this.props.theme.primaryColor
+        return this.props.theme.primaryColor;
     }
   }
 
@@ -91,4 +93,3 @@ class Notification extends React.PureComponent {
 Notification.propTypes = propTypes
 
 export default withTheme(connect()(Notification));
-
