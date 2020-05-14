@@ -5,8 +5,18 @@ import Notification from './Notification';
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 16px;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+`;
+
+const StyledNotification = styled(Notification)`
+  margin 8px;
 `;
 
 
@@ -15,7 +25,7 @@ function Notifications(props) {
   return (
     <Container>
     {props.notifications.map((notification) => (
-      <Notification />
+      <StyledNotification {...notification} />
     ))}
     </Container>
   );
