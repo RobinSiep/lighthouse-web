@@ -47,6 +47,11 @@ const PlayIcon = styled(Icon)`
   color: ${props => props.running ? props.theme.translucentGrey : props.theme.green};
 `;
 
+const RebootIcon = styled(Icon)`
+  color: ${props => props.running ? props.theme.orange : props.theme.translucentGrey};
+  margin-right: 16px;
+`;
+
 const StopIcon = styled(Icon)`
   margin-left: auto;
   margin-right: 16px;
@@ -98,6 +103,7 @@ class MachineListItem extends React.PureComponent {
         <Name running={running}>{this.props.machine.name}</Name>
         {usageSummary}
         <StopIcon running={running} className="fas fa-stop" onClick={() => this.executeCommand('shutdown')} />
+        <RebootIcon running={running} className="fas fa-redo" onClick={() => this.executeCommand('reboot')} />
         <PlayIcon running={running} className="fas fa-play" onClick={() => this.executeCommand('wake')} />
       </ListItem>
     );
